@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+
+  #importing Dockerfile configurations
+  liberty-server:
+    build: .
+    ports: 
+      - "9080:9080"
+      - "9443:9443"
+    # volumes:
+    #   - ./:/app
+
+  #MySQL Database Server Configurations
+  mysql-server:
+    image: mysql:8.0.20
+    environment:
+      MYSQL_ROOT_PASSWORD: pizzatogo
+      MYSQL_DATABASE: pizzatogo
+    ports:
+      - "3308:3306"
+    #volumes:
+     #   - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  
+  admin:    
+    image: adminer    
+    ports:      
+      - "8080:8080"
+  
+  
+  #Openliberty Server Configurations
+ # liberty-server:
+ #   image: open-liberty:microProfile3
+  #  ports: 
+  #    - "9080:9080"
+  #    - "9443:9443"
+  #  volumes: 
+ #     - ./target/DemoNoteListMicroprofile.war:/opt/ol
+  #  depends_on: 
+ #     - mysql-server
+
+     

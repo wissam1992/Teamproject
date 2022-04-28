@@ -1,0 +1,22 @@
+wir brauchen zuerst Order zu hinzufügen damit wir Delivery hinzufügen können.
+
+um Delivery hinzufügen
+http://localhost:9080/pizza-to-go-server/app/delivery/add
+Beispiel
+ {
+        "orderId": 128,
+        "paymentStatus": "PAID_WITH_CARD",
+        "status": "ORDERED",
+        "username": "hrirks"
+ }
+
+Delivery zugreifen mit
+http://localhost:9080/pizza-to-go-server/app/delivery/process/{orderID}
+BSP : orderId -> 125
+
+Delivery Log erstellen mit
+http://localhost:9080/pizza-to-go-server/app/delivery/log
+
+Delivery zu aktulisieren
+http://localhost:9080/pizza-to-go-server/app/delivery/update/{orderId}
+BSP : orderId -> 125

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Pizza To Go</title>
+	<link rel="icon" type="image/png" href="logo.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+		integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+		crossorigin="" />
+	<script src="https://kit.fontawesome.com/7fc9c8d9f5.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+		integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+		crossorigin=""></script>
+
+	<script src="js/notelist.js"></script>
+
+
+</head>
+
+<body style="margin: 0px">
+	<div class="mainContainer">
+		<header>
+
+			<div class="header">
+				<img src="logo.png" width="140" height="50" style="padding-left: 30px; float: left;">
+				<div class="header-right">
+					<a class="active" href="javascript:showBestelldetail()"> </a>
+					<a href="javascript:showAnmeldung()">ANMELDEN</a>
+					<a href="javascript:showRegistration()">REGESTRIEREN</a>
+				</div>
+			</div>
+			<div class="welcome">
+				<img src="logo.png" width="140" height="50" style="padding-left: 30px; float: left;">
+				<div class="header-right">
+					<a class="active1" href="javascript:showBestelldetail()"> </a>
+					<a id="willkommen"></a>
+					<a href="javascript:logout()">ABMELDEN</a>
+
+				</div>
+			</div>
+
+		</header>
+		<article>
+			<div id="app">
+
+			</div>
+
+
+			<div id="showinfo">
+
+			</div>
+
+			<div id="bestellDetails" style="display: none ;">
+				<h2 style="margin: 15Px;">BESTELLDETAILS</h2>
+				<p id="warenkordLeer" style="padding-left: 15px;"></p>
+				<div id="bestellung" style="padding-left: 15px;">
+				</div>
+				<hr style="height:1px;border-width:0;color:gray;background-color:gray;width: 830px;margin-left: 15px;">
+				<div id="summe">
+					<table>
+						<tr>
+
+
+							<td style="width: 400px;">
+								<h3 style="margin: 15Px;">SUMME</h2>
+							</td>
+
+							<td style=" width: 400px;">
+								<h3 id="summe_preis1" style="margin: 15Px; text-align: right; ">
+									</h2>
+							</td>
+						<tr>
+
+							<td style="text-align: right;padding-right: 15px;padding-left: 15px;width: 400px;"><button
+									type="button" id="payment_button" onclick="ZurKassegehen()">Zur Kasse gehen</button>
+							</td>
+
+							<td style="text-align: right;padding-right: 15px;padding-left: 15px;width: 400px;"><button
+									type="button" id="bestellDetails_button" onclick="hideBestellDetails()">brauchst du
+									noch was ?</button></td>
+						</tr>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div id="orderOk" style="display: none ;">
+				<h2 style="margin: 15Px;">Danke für deine Bestellung</h2>
+
+			</div>
+			<div id="payment" style="display: none ;">
+				<h2 style="margin: 15Px;">BEZAHLEN</h2>
+				<hr style="height:1px;border-width:0;color:gray;background-color:gray;width: 830px;margin-left: 15px;">
+				<div id="info_User" style="margin: 15Px;">
+					<h3>Lieferadresse</h3>
+					<table>
+						<tr>
+							<td>Vorname</td>
+							<td><input type="text" id="vrnL" type="text" onkeyup="checkVornameL()"
+									onblur="checkVornameOnBlurL()" onfocus="checkVornameOnFocusL()" size="40" /></td>
+							<td style="padding-top: 3px;">
+								<div id="errorVornameL" style="color: red;"></div>
+							</td>
+
+						</tr>
+						<tr>
+							<td>Nachname</td>
+							<td><input type="text" id="nhnL" onkeyup="checkNachnameL()" onblur="checkNachnameOnBlurL()"
+									onfocus="checkNachnameOnFocusL()" size="40" required /></td>
+							<td style="padding-top: 3px;">
+								<div id="errorNachnameL" style="color: red;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td>Straße</td>
+							<td><input type="text" id="streetL" name="street" size="25" onkeyup="checkStraßeL()"
+									onblur="checkStraßeOnBlurL()" onfocus="checkStraßeOnFocusL()" /> <span
+									style="float: right;"> Nr: <input type="text" id="streetNrL" name="streetNr"
+										size="4" onkeyup="checkStraßeNrL()" onblur="checkStraßeNrOnBlurL()"
+										onfocus="checkStraßeNrOnFocusL()" />
+								</span></td>
+							<td style="padding-top: 3px;">
+								<div id="errorStraßeNrL" style="color: red;"></div>
+								<div id="errorStraßeL" style="color: red;"></div>
+							</td>
+						</tr>
+						<tr>
+							<td>PLZ</td>
+							<td><input type="text" id="plzL" onkeyup="getPlzFromEscherL()" onfocus="checkPlzOnFocusL()"
+									onblur="checkPlzOnBlurL()" size="5" />
+								<span style="float: right;"> Ort <select id="ortL" style="width: 200px;"></select>
+								</span>
+							</td>
+							<td style="padding-top: 3px;">
+								<div id="accessErrorL" style="color: red;"></div>
+							</td>
+						</tr>
+
+					</table>
+					<h3>Zahlungsart</h3>
+					<input type="radio" id="karte" name="zahlungsart" value="karte">
+					<label for="karte">Karte</label><br>
+					<input type="radio" id="bar" name="zahlungsart" value="bar">
+					<label for="bar">Bar</label><br><br>
+					<table>
+						<tr>
+
+							<td style="text-align: right;padding-right: 15px;width: 400px;"><button type="button"
+									id="zahlen" onclick="Order()" disabled>Zahlen</button></td>
+
+							<td style="text-align: right;padding-right: 15px;width: 400px;"><button type="button"
+									id="bestellDetails_button" onclick="hideBestellDetails()">brauchst du
+									noch was ?</button></td>
+						</tr>
+					</table>
+
+				</div>
+			</div>
+
+
+			<div id="anmeldung" style="width: 450px; display: none;">
+
+				<h3 style="text-align: center;">ANMELDUNG</h3>
+				<div style="display: flex;justify-content: center;align-items: center;">
+					<table>
+						<tr>
+							<td>Benutzer </td>
+							<td><input id="username" type="text" onblur="checkLoginOnFocus()" style="width: 197px;"
+									required /></td>
+						</tr>
+						<tr>
+							<td>Password </td>
+							<td><input id="password" type="password" style="width: 197px;" required /></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td style="padding-top: 3px;">
+								<button type="button" style="width: 100px; height: 30px;"
+									onclick="login()">Anmelden</button>
+								<button id="Abbrechen" onclick="hideAnmeldung()"
+									style="width: 100px; height: 30px;">Abbrechen</button>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td style="padding-top: 3px;">
+								Neu bei uns ? <a href="javascript:showRegistration()">REGESTRIEREN</a>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td style="padding-top: 3px; padding-bottom: 5px;">
+								<div id="accessError1" style="color: red;"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div id="registration" style="width: 450px; display: none ; padding-left: 20px;">
+
+
+
+				<h3 style="text-align: center;">REGISTRIERUNG</h3>
+
+				<table>
+					<tr>
+						<td>Vorname</td>
+						<td><input type="text" id="vrn" type="text" onkeyup="checkVorname()"
+								onblur="checkVornameOnBlur()" onfocus="checkVornameOnFocus()" size="40" /></td>
+
+					</tr>
+					<tr>
+						<td>Nachname</td>
+						<td><input type="text" id="nhn" onkeyup="checkNachname()" onblur="checkNachnameOnBlur()"
+								onfocus="checkNachnameOnFocus()" size="40" required /></td>
+					</tr>
+					<tr>
+						<td>Straße</td>
+						<td><input type="text" id="street" name="street" size="25" onkeyup="checkStraße()"
+								onblur="checkStraßeOnBlur()" onfocus="checkStraßeOnFocus()" /> <span
+								style="float: right;"> Nr: <input type="text" id="streetNr" name="streetNr" size="4"
+									onkeyup="checkStraßeNr()" onblur="checkStraßeNrOnBlur()"
+									onfocus="checkStraßeNrOnFocus()" />
+							</span></td>
+					</tr>
+					<tr>
+						<td>PLZ</td>
+						<td><input type="text" id="plz" onkeyup="getPlzFromEscher()" onfocus="checkPlzOnFocus()"
+								onblur="checkPlzOnBlur()" size="5" />
+							<span style="float: right;"> Ort <select id="ort" style="width: 200px;"></select>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td>E-Mail</td>
+						<td><input type="email" name="email" size="40" id="email" type="text" onkeyup="checkEmail()"
+								onblur="checkEmailOnBlur()" onfocus="checkEmailOnFocus()" /></td>
+						<!--  -->
+					</tr>
+					<tr>
+						<td>Benutzer-ID</td>
+						<td><input id="user" type="text" size="40" required onkeyup="checkUser()"
+								onfocus="checkUserOnFocus()" onblur="checkUserOnBlur()" /></td>
+					</tr>
+					<tr>
+						<td>Passwort</td>
+						<td><input id="pwd" type="password" size="40" required /></td>
+						<!-- onkeyup="checkPassword()" -->
+					</tr>
+
+					<tr>
+						<td>Passwortsicherheit</td>
+						<td><canvas id="pwdCanvas" width="155" height="20" style="border: 1px solid #d3d3d3;"></canvas>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+							<button type="button" style="width: 100px; height: 30px;" id="btn" onclick="register()"
+								disabled>Registrieren</button>
+							<button id="Abbrechen" onclick="hideRegistration()"
+								style="width: 100px; height: 30px;">Abbrechen</button>
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td style="padding-top: 3px;">
+							<a href="javascript:showAnmeldung()">Sich anmelden</a>
+						</td>
+					</tr>
+
+				</table>
+
+				<p>
+				<div id="benutzerError" style="color: red;"></div>
+				</p>
+
+				<p>
+				<div id="errorVorname" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="errorNachname" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="errorStraße" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="errorEmail" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="errorPlz" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="errorStraßeNr" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="errorUser" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="errorPassword" style="color: red;"></div>
+				</p>
+				<p>
+				<div id="accessError" style="color: red;"></div>
+				</p>
+			</div>
+		</article>
+
+		<aside style="overflow: auto;" class="aside_r">
+			<h2 style="margin: 15Px;">BESTELLDETAILS</h2>
+			<div id="warenkorb"></div>
+			<hr
+				style="height:1px;border-width:0;color:gray;background-color:gray; margin-left: 15px; margin-right: 15px; margin-bottom: 0px;">
+			<div id="summe">
+				<table>
+					<tr>
+
+
+						<td>
+							<h3 style="margin: 15Px;">SUMME</h2>
+						</td>
+						<td id="summe_preis">
+
+						</td>
+					<tr>
+
+						<td colspan="2" style="text-align: right;padding-right: 15px;padding-left: 15px;"><button
+								type="button" id="payment_button" onclick="ZurKassegehen()">Zur Kasse gehen</button>
+						</td>
+					</tr>
+					</tr>
+				</table>
+			</div>
+		</aside>
+	</div>
+</div>
+</body>
+
+
+
+</html>

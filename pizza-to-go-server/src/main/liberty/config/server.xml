@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="${project.name}">
+
+    <featureManager>
+        <feature>jndi-1.0</feature>
+        <feature>jaxrs-2.1</feature>
+        <feature>javaee-8.0</feature>
+        <feature>cdi-2.0</feature>
+        <feature>servlet-4.0</feature>
+        <feature>appSecurity-2.0</feature>
+        <feature>restConnector-2.0</feature>
+        <feature>jdbc-4.2</feature>
+        <feature>jpa-2.2</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  httpPort="9080"
+                  httpsPort="9443"/>
+
+    <webApplication location="${project.name}.war" contextRoot="/">
+        <classloader apiTypeVisibility="+third-party" />
+    </webApplication>
+    <mpMetrics authentication="false"/>
+
+    <!-- This is the keystore that will be used by SSL and by JWT. -->
+    <keyStore id="defaultKeyStore" location="public.jks" type="JKS" password="atbash" />
+
+
+    <!-- The MP JWT configuration that injects the caller's JWT into a ResourceScoped bean for inspection. -->
+    <mpJwt id="jwtUserConsumer" keyName="theKeyId" audiences="targetService" issuer="${jwt.issuer}"/>
+
+
+<!-- Datasource  -->
+    <!--Datasource Configuration-->
+    <dataSource id="PizzaDataSource" jndiName="jdbc/mySQL" type="javax.sql.ConnectionPoolDataSource" transactional="false">
+        <jdbcDriver javax.sql.ConnectionPoolDataSource="com.mysql.cj.jdbc.MysqlConnectionPoolDataSource" libraryRef="MySQLLib" />
+        <properties databaseName="pizzatogo" serverName="mysql-server" portNumber="3306" user="${database.username}" password="${database.password}" />
+    </dataSource>
+
+    <quickStartSecurity userName="admin" userPassword="admin" />
+
+    <library id="MySQLLib">
+        <fileset dir="${server.config.dir}/lib" includes="mysql-connector-java-8.0.20.jar" />
+    </library>
+</server>

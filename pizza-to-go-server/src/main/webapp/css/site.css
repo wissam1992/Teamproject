@@ -1,0 +1,547 @@
+@charset "UTF-8";
+
+.photo { 
+  width :210px;
+  height :210px; }
+.mainContainer { 
+ 
+  height:100vh; 
+  display: grid; 
+  grid-template-columns: 100%; 
+  grid-template-rows: repeat(auto,3); 
+  grid-template-areas:  
+    "head" 
+    "art" 
+    "aside" 
+  ; 
+} 
+
+@media screen and (min-width: 44.001em) { 
+  /* .pet-photo { display: block; } */
+  .photo {
+    float: left;
+    margin-right: 10px;
+    margin-left: 0px;
+    padding-left: 0 px;
+     width :310px;
+    height :310px;
+  }
+  .mainContainer { 
+    grid-template-rows: 50px auto;
+    /*grid-template-columns: 80% 20%; */
+    grid-template-columns: auto 30%;
+    grid-template-areas:  
+      "head  head" 
+      "art   aside";
+  } 
+  
+}
+
+
+header {
+	/* padding: 15px; */
+	border-bottom: 1px solid #fff;
+	background-color: #D8D8D8;
+  grid-area: head;
+}
+
+
+article {
+	border-bottom: 2px solid #fff;
+    background: white;
+    grid-area: art;
+}
+
+
+
+/* /*  */
+/* .mainContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+#container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.article {
+  flex-grow: 1;
+  margin-bottom: 100px;
+  grid-area: art;
+}
+
+aside {
+  
+  width: 350px;	border-bottom: 2px solid #fff;
+  background:#d3cccc;
+  grid-area: rating;
+  height: auto;
+  flex-shrink: 0;
+  grid-area: asi;
+} */
+
+
+
+aside {
+	border-bottom: 2px solid #fff;
+    background:#d3cccc;
+    grid-area: aside;
+    height: auto;
+}
+
+/* footer {
+	padding: 15px;
+	border-bottom: 2px solid #fff;
+    background: #D8D8D8;
+    grid-area: userRating;
+} */
+
+#bewertungsDiv {
+	width: 300px; 
+	background: #F9EECF; 
+	border: 1px dotted black; 
+	text-align: left
+}
+
+#UpdateDiv {
+	width: 300px; 
+	background: #F9EECF; 
+	border: 1px dotted black; 
+	text-align: left
+}
+
+#registration {
+	/* position: absolute; */
+    /* top: 900px; */
+    left: 200px;
+    width: 400px;
+    border-radius: 7px;
+     border: 1.5px solid #000000; 
+     margin: 30px auto;
+    /* background: #ffe6b3; */
+    /* z-index: 1000;     */
+}
+
+#anmeldung {
+
+   
+    margin: 30px auto;
+    border-radius: 7px;
+     border: 1.5px solid #000000; 
+    /* background: rgb(206, 214, 221); */
+    
+
+}
+
+
+
+
+
+.header{
+	overflow: hidden;
+	background-color: #f1f1f1;
+	padding-right: 30px ;
+  }
+  
+  .header a {
+	float: left;
+	color: black;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 18px; 
+	line-height: 25px;
+	border-radius: 4px;
+  }
+  
+  .header a.logo {
+	font-size: 25px;
+	font-weight: bold;
+  }
+  
+  .header a:hover{
+	background-color: #ddd;
+	color: black;
+  }
+  
+  .header a.active{
+	background-color: dodgerblue;
+	color: white;
+  }
+
+ 
+  
+  .header-right {
+	float: right;
+  }
+  
+
+  .welcome{
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding-right: 30px ;
+    }
+    
+ .welcome a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px; 
+    line-height: 25px;
+    border-radius: 4px;
+    }
+    
+    .welcome a.logo {
+    font-size: 25px;
+    font-weight: bold;
+    }
+    
+    .welcome a:hover{
+    background-color: #ddd;
+    color: black;
+    }
+    
+ 
+  
+    .welcome a.active1{
+      background-color: dodgerblue;
+      color: white;
+      }
+    
+     .welcome-right {
+    float: right;
+    }
+
+
+
+
+  
+.app-title {
+  text-align: center;
+  font-weight: normal;
+  font-size: 2.6rem;
+}
+
+.animal {
+  max-width: 650px;
+  /* padding: 20px; */
+  margin: 15px auto;
+  border-radius: 8px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 150px;
+  position:relative; 
+}
+
+.animal h4 {
+  margin: 0 0 6px 0;
+}
+
+.pet-photo {
+  float: left;
+  width: 40%;
+  margin-right: 15px;
+  margin-left: 0px;
+  padding-left: 0 px;
+  width: 150px; 
+  height: 150px
+
+
+}
+
+.pet-name {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 0 0 1rem 0;
+}
+
+
+
+
+ /* button hinzufügen */
+.hinzufuegen{
+  
+  border-bottom-right-radius: 8px;
+  width: 40px; 
+  height: 40px; 
+  background-color:  rgb(182, 182, 182); 
+  color: white;   
+  border: 1.5px solid rgb(182, 182, 182);   
+  text-decoration: none;
+  margin-left: 10px ; 
+  font-size: 20px;
+}
+
+.suppl{
+
+  display:inline-table; 
+  table-layout:fixed;
+}
+
+.suppl td{
+
+  font-size: 15px;
+  max-width:100px; 
+  height:auto;
+  text-align:center;
+
+}
+
+
+.hinzufuegen1{
+  
+  border-top-right-radius: 8px;
+  width: 40px; 
+  height: 40px; 
+  background-color:  rgb(182, 182, 182); 
+  color: white;   
+  border: 1.5px solid rgb(182, 182, 182);   
+  text-decoration: none;
+  margin-left: 10px ; 
+  font-size: 20px;
+}
+
+.hinzufuegen:hover,.hinzufuegen:active {
+  background-color: dodgerblue;
+  border-color:  dodgerblue;
+  }
+
+
+
+#price{
+
+  position:absolute;
+ bottom:0;
+ left :0;
+ margin-left:  160px;
+ margin-bottom: 10px;
+}
+#sup{
+
+  border-radius:50px;
+  font-size:15px;
+  color: dodgerblue;
+  line-height:10px;
+  text-align:center;
+  font-weight: bold;
+  background: white
+}
+
+
+/* ShowWarenkorb */
+
+.showWarenkorb{
+  max-width: 650px;
+  margin : 15px; 
+  max-height: 150px;
+  /* margin: 15px auto; */
+  border-radius: 2px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position:relative; 
+  height: 150px;
+  width: 90%;
+}
+
+#showinfo {
+  /* max-width: 650px; */
+  margin : 15px; 
+  /* max-height: 150px; */
+  /* margin: 15px auto; */
+  border-radius: 5px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position:relative; 
+  /* height: 150px;
+  width: 90%; */
+}
+
+.showWarenkorb h4 {
+  margin: 0 0 0 0;
+  
+}
+
+
+.description{
+margin-top: 0;
+  /* width:60%; */
+  vertical-align: top;
+  text-align: left;
+  padding: 0; 
+}
+
+.photo_zutaten{
+  width: 100%;
+  margin-right: 10px;
+  margin-left: 0px;
+  padding-left: 0 px;
+  height: auto
+}
+
+.anzahl{
+
+  position:absolute;
+ bottom:0;
+ left: 0;
+ /* padding-right: 50px; */
+}
+
+.plus{
+
+  width: 40px; 
+  height: 40px; 
+ 
+  /* margin-right: 10px;  */
+  background-color:  rgb(182, 182, 182); 
+  color: white;   
+  border: 1.5px solid rgb(182, 182, 182);   
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.minus{
+
+  width: 40px; 
+  height: 40px; 
+ 
+  /* margin-right: 10px;  */
+  background-color:  rgb(182, 182, 182); 
+  color: white;   
+  border: 1.5px solid rgb(182, 182, 182);   
+  text-decoration: none;
+  
+}
+#preis{
+  font-size: 18px;
+  font-weight: bold;
+ 
+
+}
+
+#preis2{
+  font-size: 20px;
+  font-weight: bold;
+  color: dodgerblue;
+  margin-right: 10px;
+
+
+}
+.name {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  /* padding: 10px 10px 0 5px; */
+}
+
+/* #bestellung table td{
+  margin: 0 0 10rem 0; 
+} */
+
+.description {
+  font-size: 16px;
+  font-weight: normal;
+  max-height: auto;
+  overflow: hidden;
+}
+#description2{
+
+  max-height: 50px;
+  overflow: auto;
+
+}
+ /* button hinzufügen */
+.löschen{
+ width: 40px; 
+ height: 40px; 
+
+ /* margin-right: 10px;  */
+ background-color:  rgb(182, 182, 182); 
+ color: white;   
+ border: 1.5px solid rgb(182, 182, 182);   
+ text-decoration: none; 
+ /* border-radius: 4px; */
+
+ font-size: 20px;
+}
+
+.löschen:hover,.löschen:active {
+  background-color: dodgerblue;
+  border-color:  dodgerblue;
+  }
+
+#preis3{
+  float:right;
+  position:absolute;
+  bottom:0;
+  right: 0;
+}
+
+
+
+#info_zurück{
+  float:right;
+  position:absolute;
+  top:0;
+  right: 0;
+}
+
+
+.mehrinfos{
+
+  /* max-width: 850px; */
+  /* padding: 20px; */
+  /* margin: 15px auto; */
+  /* border-radius: 8px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1); */
+  border-radius: 7px;
+     /* border: 1.5px solid #000000;  */
+     /* margin: 30px auto; */
+  /* overflow: hidden; */
+  /* height: 350px; */
+  position:relative;
+  overflow: auto;
+}
+
+#td_img{
+  padding:0 0 20px 0;
+}
+
+
+
+#summe_preis{
+
+  text-align: right;
+  font-size: 25px;
+  width: 100%;
+  padding-right: 15px;
+}
+
+#payment_button,#bestellDetails_button,#zahlen{
+
+ 
+  background-color:  dodgerblue;
+  color: white;   
+  border: 1.5px solid dodgerblue; 
+  /* text-decoration: none; */
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 5px 5px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+#zahlen:disabled{
+  background-color:  rgb(159, 201, 243); 
+  color: white;   
+  border: 1.5px solid rgb(159, 201, 243); 
+}
